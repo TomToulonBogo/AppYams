@@ -11,7 +11,8 @@ import { Pastrie } from '../pastrie';
 })
 export class SearchComponent implements OnInit {
 
-  @Output() searchValue: EventEmitter<string> = new EventEmitter;
+  @Output() word = new EventEmitter<string>();
+  newValue: string = "";
 
   constructor(private service: PastrieService) { }
 
@@ -19,13 +20,15 @@ export class SearchComponent implements OnInit {
    // console.log(this.service.search())
   }
 
-  onSubmit(form: NgForm): void {
-    // récupération des données du formulaire
-      this. service.search(form.value ["word"]);
-      this.searchValue.emit(form.value["word"])
-      console.log(form);
+  // onSubmit(form: NgForm): void {
+  //   // récupération des données du formulaire
+  //     this. service.search(form.value ["word"]);
+  //     console.log(form);
+  //   }
+
+    onChangeEmit(word: string) {
+      this.word.emit(word);
+      this.newValue = word;
+      this.service.search(word);
     }
-
-    
-
 }

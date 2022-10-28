@@ -20,12 +20,13 @@ export class PastriesComponent implements OnInit {
   start = 0;
   end = this.pastries.length / 2;
   filteredPastries: Array<Pastrie> = PASTRIES;
+  searchInput: string = ''
 
 
   constructor(private service: PastrieService) { }
 
   ngOnInit() {
-    this.filteredPastries = this.service.paginate(this.start, this.end);
+    this.changePages();
   }
 
   onSelect(pastrie: Pastrie): void {
@@ -60,5 +61,10 @@ export class PastriesComponent implements OnInit {
   count() {
     console.log(this.pastries.length)
     return this.pastries.length
+  }
+
+  searchPastries(word: string): void {
+    this.searchInput = word;
+    this.filteredPastries = this.service.search(word);
   }
 }

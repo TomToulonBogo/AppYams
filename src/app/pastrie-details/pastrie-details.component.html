@@ -11,9 +11,11 @@
       <button class="btn btn-primary" (click)="modifyOrder()">
         {{ sens ? "Desc" : "Asc" }} >>
       </button>
-      <button class="btn btn-primary" (click)="preference(pastrie.id)">Choice</button>
+      <div *ngIf="favoritePastriesId.length < 3 || favoritePastriesId.length === 3 && pastrie.priority === 'favorite'">
+        <button class="btn btn-primary" (click)="preference(pastrie.id)">Choice</button>
+      </div>
     </div>
-    <p>{{ pastrie.priority}}</p>
+    <p>{{ pastrie.priority }}</p>
     <ul class="list-group" *ngIf="ingredients">
       <h2>Liste des ingrédients</h2>
       <li *ngFor="let ingredient of ingredients" class="list-group-item">

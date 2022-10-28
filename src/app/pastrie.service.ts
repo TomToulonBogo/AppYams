@@ -12,6 +12,7 @@ export class PastrieService {
 
   pastries: Array<Pastrie> = PASTRIES;
   ingredientsList: Array<List> = INGREDIENTS_LISTS; // Tableau des ingrédients de toutes les pâtisseries.
+  searchPastries: Array<Pastrie> = [];
 
   getPastries(): Array<Pastrie> {
     return this.pastries.sort((a, b) => {
@@ -28,12 +29,11 @@ export class PastrieService {
   }
 
   paginate(start: number, end: number): Array<Pastrie> {
-    return this.pastries.slice(start, end);
+    return this.searchPastries = this.pastries.slice(start, end);
     
   }
 
-  search(word: string): Pastrie | null | Array<Pastrie> {
-    return this.pastries.filter(p => p.name === word)
-    console.log('search')
+  search(word: string): Array<Pastrie> {
+    return !word ? this.searchPastries : this.pastries.filter(p => p.name === word)
   }
 }

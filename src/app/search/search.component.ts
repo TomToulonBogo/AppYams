@@ -17,18 +17,12 @@ export class SearchComponent implements OnInit {
   constructor(private service: PastrieService) { }
 
   ngOnInit(): void {
-   // console.log(this.service.search())
   }
 
-  // onSubmit(form: NgForm): void {
-  //   // récupération des données du formulaire
-  //     this. service.search(form.value ["word"]);
-  //     console.log(form);
-  //   }
 
-    onChangeEmit(word: string) {
-      this.word.emit(word);
-      this.newValue = word;
-      this.service.search(word);
-    }
+  onChangeEmit(word: string) {
+    this.word.emit(word);
+    this.newValue = word;
+    this.service.search(word);
+  }
 }

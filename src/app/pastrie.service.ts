@@ -11,7 +11,7 @@ export class PastrieService {
   constructor() { }
 
   pastries: Array<Pastrie> = PASTRIES;
-  ingredientsList: Array<List> = INGREDIENTS_LISTS; // Tableau des ingrédients de toutes les pâtisseries.
+  ingredientsList: Array<List> = INGREDIENTS_LISTS;
   searchPastries: Array<Pastrie> = [];
 
   getPastries(): Array<Pastrie> {
@@ -30,7 +30,7 @@ export class PastrieService {
 
   paginate(start: number, end: number): Array<Pastrie> {
     return this.searchPastries = this.pastries.slice(start, end);
-    
+
   }
 
   search(word: string): Array<Pastrie> {

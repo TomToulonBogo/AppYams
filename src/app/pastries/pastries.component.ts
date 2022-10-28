@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-// Importez la définition de la classe et les pâtisseries
 import { Pastrie } from '../pastrie';
 import { PASTRIES } from '../mock-pastries';
 import { Favorite } from '../pastrie-details/pastrie-details.component';
@@ -30,20 +29,17 @@ export class PastriesComponent implements OnInit {
   }
 
   onSelect(pastrie: Pastrie): void {
-    // console.log(pastrie);
     this.selectedPastrie = pastrie;
+    console.log(pastrie);
   }
 
   changeParentPreference(id: string) {
     const pastrie = this.pastries.find(p => p.id === id)
     if (pastrie !== undefined) {
       pastrie?.priority === Favorite.NOFAV ? pastrie.priority = Favorite.FAV : pastrie.priority = Favorite.NOFAV;
-      if(pastrie.priority === Favorite.FAV) {
-        if (this.favoritePastries.length < 3){
-        this.favoritePastries.push(pastrie);
-        }
-        else {
-          
+      if (pastrie.priority === Favorite.FAV) {
+        if (this.favoritePastries.length < 3) {
+          this.favoritePastries.push(pastrie);
         }
       }
       else {

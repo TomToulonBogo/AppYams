@@ -20,23 +20,17 @@ export class PastrieDetailsComponent implements OnInit {
   isFavorite: Favorite = Favorite.NOFAV
   favoritePastriesId: Array<Pastrie> = [];
   pastries: Array<Pastrie> = PASTRIES;
-  
+
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.pastrie); // pour l'instant cela retourne undefined ... C'est normal
+    console.log(this.pastrie);
   }
 
-  // dès que quelque chose "rentre" dans le component enfant via une propriété Input
-  // ou à l'initialisation du component (une fois) cette méthode est appelée
   ngOnChanges() {
-    // on vérifie que l'on a bien cliqué sur une pâtisserie avant de rechercher dans la liste
-    // des ingrédients.
     if (this.pastrie) {
-
       console.log(this.pastrie);
-
       // récupération de la liste des ingrédients
       this.ingredients = this.ingredientsLists.find(elem => elem.id === this.pastrie?.id)?.list || [];
     }
@@ -52,17 +46,13 @@ export class PastrieDetailsComponent implements OnInit {
     }
   }
 
-  // PastrieDetailsComponent
   preference(id: string) {
     const find = this.pastries.find(p => p.id === id);
     const index = this.favoritePastriesId.findIndex(favoritePastrie => favoritePastrie.id === id);
 
-    if(find && this.favoritePastriesId.length < 3) this.favoritePastriesId.push(find);
-    else if(find && this.favoritePastriesId.length === 3) this.favoritePastriesId.splice(index, 1);
+    if (find && this.favoritePastriesId.length < 3) this.favoritePastriesId.push(find);
+    else if (find && this.favoritePastriesId.length === 3) this.favoritePastriesId.splice(index, 1);
     this.changePreference.emit(id); // émettre l'id de la pâtisserie vers le parent
-    
-    
-    // console.log("no favorite")
   }
 }
 

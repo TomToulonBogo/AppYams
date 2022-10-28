@@ -1,25 +1,24 @@
 <div class="card" *ngIf="pastrie">
-    <img
-      *ngIf="pastrie.url"
-      class="card-img-top"
-      src="{{ pastrie.url }}"
-      alt="Pastrie Category"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ pastrie.ref }}</h5>
-      <p class="card-text">Name: {{ pastrie.name }}</p>
-      <button class="btn btn-primary" (click)="modifyOrder()">
-        {{ sens ? "Desc" : "Asc" }} >>
+  <img *ngIf="pastrie.url" class="card-img-top" src="{{ pastrie.url }}" alt="Pastrie Category" />
+  <div class="card-body">
+    <h5 class="card-title">{{ pastrie.ref }}</h5>
+    <p class="card-text">Name: {{ pastrie.name }}</p>
+    <button class="btn btn-primary" (click)="modifyOrder()">
+      {{ sens ? "Desc" : "Asc" }} >>
+    </button>
+    <div>
+      <button class="btn btn-primary">Hide Details
       </button>
-      <div *ngIf="favoritePastriesId.length < 3 || favoritePastriesId.length === 3 && pastrie.priority === 'favorite'">
-        <button class="btn btn-primary" (click)="preference(pastrie.id)">Choice</button>
-      </div>
     </div>
-    <p>{{ pastrie.priority }}</p>
-    <ul class="list-group" *ngIf="ingredients">
-      <h2>Liste des ingrédients</h2>
-      <li *ngFor="let ingredient of ingredients" class="list-group-item">
-        {{ ingredient }}
-      </li>
-    </ul>
+    <div *ngIf="favoritePastriesId.length < 3 || favoritePastriesId.length === 3 && pastrie.priority === 'favorite'">
+      <button class="btn btn-primary" (click)="preference(pastrie.id)">Choice</button>
+    </div>
   </div>
+  <p>{{ pastrie.priority }}</p>
+  <ul class="list-group" *ngIf="ingredients">
+    <h2>Liste des ingrédients</h2>
+    <li *ngFor="let ingredient of ingredients" class="list-group-item">
+      {{ ingredient }}
+    </li>
+  </ul>
+</div>
